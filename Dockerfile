@@ -1,4 +1,4 @@
 FROM golang:latest
-RUN mkdir /go/go-monkey
-WORKDIR /go/go-monkey
-ADD . /go/go-monkey
+RUN mkdir -p /go/src/github.com/standfirm/go-monkey
+WORKDIR /go/src/github.com/standfirm/go-monkey
+ADD . /go/src/github.com/standfirm/go-monkey
