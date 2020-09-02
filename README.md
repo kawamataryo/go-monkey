@@ -12,6 +12,5 @@ $ docker-compose up -d
 testの実行
 
 ```bash
-# ./token配下のテストコードを実行する場合
-$ docker-compose exec app go test ./token
+$ docker-compose exec app go test ./...
 ```
