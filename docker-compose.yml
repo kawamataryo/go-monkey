@@ -4,4 +4,4 @@ services:
     build: .
     tty: true
     volumes:
-      - .:/go/src/github.com/standfirm/go-monkey
+      - .:/go/src/go-monkey
