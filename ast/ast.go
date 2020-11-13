@@ -71,8 +71,8 @@ type ReturnStatement struct {
 	ReturnValue Expression
 }
 
-func (ls *ReturnStatement) statementNode()       {}
-func (ls *ReturnStatement) TokenLiteral() string { return ls.Token.Literal }
+func (rs *ReturnStatement) statementNode()       {}
+func (rs *ReturnStatement) TokenLiteral() string { return rs.Token.Literal }
 func (rs *ReturnStatement) String() string {
 	var out bytes.Buffer
 
@@ -134,5 +134,24 @@ func (pe *PrefixExpression) String() string {
 	out.WriteString(pe.Right.String())
 	out.WriteString(")")
 
+	return out.String()
+}
+
+type InfixExpression struct {
+	Token    token.Token // 演算子トークン、例えば「+」
+	Left     Expression
+	Operator string
+	Right    Expression
+}
+
+func (ie *InfixExpression) expressionNode()      {}
+func (ie *InfixExpression) TokenLiteral() string { return ie.Token.Literal }
+func (ie *InfixExpression) String() string {
+	var out bytes.Buffer
+	out.WriteString("(")
+	out.WriteString(ie.Left.String())
+	out.WriteString(" " + ie.Operator + " ")
+	out.WriteString(ie.Right.String())
+	out.WriteString(")")
 	return out.String()
 }
