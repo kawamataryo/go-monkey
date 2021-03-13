@@ -5,15 +5,17 @@ import (
 	"fmt"
 	"io"
 
-	"go-monkey/lexer"
-	"go-monkey/parser"
 	"go-monkey/evaluator"
+	"go-monkey/lexer"
+	"go-monkey/object"
+	"go-monkey/parser"
 )
 
 const PROMPT = ">> "
 
 func Start(in io.Reader, out io.Writer) {
 	scanner := bufio.NewScanner(in)
+	env := object.NewEnvironment()
 
 	for {
 		fmt.Printf(PROMPT)
@@ -32,7 +34,7 @@ func Start(in io.Reader, out io.Writer) {
 			continue
 		}
 
-		evaluated := evaluator.Eval(program)
+		evaluated := evaluator.Eval(program, env)
 		if evaluated != nil {
 			io.WriteString(out, evaluated.Inspect())
 			io.WriteString(out, "\n")
@@ -41,9 +43,6 @@ func Start(in io.Reader, out io.Writer) {
 }
 
 func printParserErrors(out io.Writer, errors []string) {
-
-
-
 
 	for _, msg := range errors {
 
